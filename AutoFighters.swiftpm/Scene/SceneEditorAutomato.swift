@@ -62,6 +62,9 @@ class SceneEditorAutomato: SKScene {
             self.starEstadoNode = nil
             self.loadScene()
         }
+        if enumEditorEstados == EditorEstadosAutomatoEnum.criarNovoEstado {
+            bt.alpha = 1
+        }
         bt.size = sizeButton
         bt.position = CGPoint(x: bt.size.width/2, y: self.frame.size.height/2 + bt.size.height+10)
         return bt
@@ -72,6 +75,9 @@ class SceneEditorAutomato: SKScene {
             self.enumEditorEstados =  EditorEstadosAutomatoEnum.criarLigação
             self.starEstadoNode = nil
             self.loadScene()
+        }
+        if enumEditorEstados == EditorEstadosAutomatoEnum.criarLigação {
+            bt.alpha = 1
         }
         bt.size = sizeButton
         bt.position = CGPoint(x: bt.size.width/2, y: self.frame.size.height/2)
@@ -84,6 +90,9 @@ class SceneEditorAutomato: SKScene {
             self.starEstadoNode = nil
             self.loadScene()
         }
+        if enumEditorEstados == EditorEstadosAutomatoEnum.apagar {
+            bt.alpha = 1
+        }
         bt.size = sizeButton
         bt.position = CGPoint(x: bt.size.width/2, y: self.frame.size.height/2 - bt.size.height-10)
         return bt
@@ -94,6 +103,10 @@ class SceneEditorAutomato: SKScene {
         let bt = SKButtonNode(imageName: "buttonUp") {
             self.starEstadoNode = nil
             self.enumEstados = EstadosEnum.up
+            self.loadScene()
+        }
+        if enumEstados == EstadosEnum.up {
+            bt.alpha = 1
         }
         bt.size = sizeButton
         bt.position = CGPoint(x: 1.75*(bt.size.width), y: self.frame.size.height/2 + 2*(bt.size.height+10) )
@@ -104,6 +117,10 @@ class SceneEditorAutomato: SKScene {
         let bt = SKButtonNode(imageName: "buttonDown") {
             self.starEstadoNode = nil
             self.enumEstados = EstadosEnum.down
+            self.loadScene()
+        }
+        if enumEstados == EstadosEnum.down {
+            bt.alpha = 1
         }
         bt.size = sizeButton
         bt.position = CGPoint(x: 1.75*(bt.size.width), y: self.frame.size.height/2+bt.size.height+10)
@@ -114,6 +131,10 @@ class SceneEditorAutomato: SKScene {
         let bt = SKButtonNode(imageName: "buttonLeft") {
             self.starEstadoNode = nil
             self.enumEstados = EstadosEnum.left
+            self.loadScene()
+        }
+        if enumEstados == EstadosEnum.left {
+            bt.alpha = 1
         }
         bt.size = sizeButton
         bt.position = CGPoint(x: 1.75*(bt.size.width), y: self.frame.size.height/2)
@@ -124,6 +145,10 @@ class SceneEditorAutomato: SKScene {
         let bt = SKButtonNode(imageName: "buttonRight") {
             self.starEstadoNode = nil
             self.enumEstados = EstadosEnum.right
+            self.loadScene()
+        }
+        if enumEstados == EstadosEnum.right {
+            bt.alpha = 1
         }
         bt.size = sizeButton
         bt.position = CGPoint(x: 1.75*(bt.size.width), y: self.frame.size.height/2 - bt.size.height-10)
@@ -134,6 +159,10 @@ class SceneEditorAutomato: SKScene {
         let bt = SKButtonNode(imageName: "buttonImpulse") {
             self.starEstadoNode = nil
             self.enumEstados = EstadosEnum.impulse
+            self.loadScene()
+        }
+        if enumEstados == EstadosEnum.impulse {
+            bt.alpha = 1
         }
         bt.size = sizeButton
         bt.position = CGPoint(x: 1.75*(bt.size.width), y: self.frame.size.height/2 - 2*(bt.size.height + 10))
@@ -146,6 +175,10 @@ class SceneEditorAutomato: SKScene {
         let bt = SKButtonNode(imageName: "buttonTouch") {
             self.starEstadoNode = nil
             self.enumLigacao = LigacaoEnum.touch
+            self.loadScene()
+        }
+        if enumLigacao == LigacaoEnum.touch {
+            bt.alpha = 1
         }
         bt.size = sizeButton
         bt.position = CGPoint(x: 1.75*(bt.size.width), y: self.frame.size.height/2 + bt.size.height + 10)
@@ -156,6 +189,10 @@ class SceneEditorAutomato: SKScene {
         let bt = SKButtonNode(imageName: "buttonTime") {
             self.starEstadoNode = nil
             self.enumLigacao = LigacaoEnum.time
+            self.loadScene()
+        }
+        if enumLigacao == LigacaoEnum.time {
+            bt.alpha = 1
         }
         bt.size = sizeButton
         bt.position = CGPoint(x: 1.75*(bt.size.width), y: self.frame.size.height/2)
@@ -166,6 +203,10 @@ class SceneEditorAutomato: SKScene {
         let bt = SKButtonNode(imageName: "buttonDistance") {
             self.starEstadoNode = nil
             self.enumLigacao = LigacaoEnum.distance
+            self.loadScene()
+        }
+        if enumLigacao == LigacaoEnum.distance {
+            bt.alpha = 1
         }
         bt.size = sizeButton
         bt.position = CGPoint(x: 1.75*(bt.size.width), y: self.frame.size.height/2-bt.size.height-10)
@@ -193,8 +234,6 @@ class SceneEditorAutomato: SKScene {
     func loadScene(){
         removeAllChildren()
         
-
-        
         addChild(buttonEstados)
         addChild(buttonLigacao)
         addChild(buttonApagar)
@@ -213,13 +252,12 @@ class SceneEditorAutomato: SKScene {
         else if enumEditorEstados == EditorEstadosAutomatoEnum.criarLigação{
             createButtonsLigacoes()
         }
+
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
-        
-        automato.printar()
         
         if enumEditorEstados == EditorEstadosAutomatoEnum.criarNovoEstado {
             let estadoNode = EstadoNode(location: location, estado: enumEstados, side: sizeButton.width, id: i)

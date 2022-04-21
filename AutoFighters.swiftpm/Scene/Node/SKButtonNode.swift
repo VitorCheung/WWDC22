@@ -16,6 +16,7 @@ class SKButtonNode: SKSpriteNode{
         let texture = SKTexture(imageNamed: imageName)
         self.action = action
         super.init(texture: texture, color: .clear, size: CGSize(width: 75, height: 75))
+        self.alpha = 0.5
         self.isUserInteractionEnabled = true
     }
     

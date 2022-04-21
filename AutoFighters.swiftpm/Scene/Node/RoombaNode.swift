@@ -40,15 +40,15 @@ class RoombaNode:SKSpriteNode{
             direction = EstadosEnum.left
             zRotation = .pi/2
         case .right:
-            self.physicsBody?.velocity = CGVector(dx: size.width*2, dy: 0)
+            self.physicsBody?.velocity = CGVector(dx: size.width, dy: 0)
             direction = EstadosEnum.right
             zRotation = .pi*3/2 
         case .up:
-            self.physicsBody?.velocity = CGVector(dx: 0, dy: size.width*2)
+            self.physicsBody?.velocity = CGVector(dx: 0, dy: size.width)
             zRotation = 0
             direction = EstadosEnum.up
         case .down:
-            self.physicsBody?.velocity = CGVector(dx: 0, dy: -size.width*2)
+            self.physicsBody?.velocity = CGVector(dx: 0, dy: -size.width)
             zRotation = .pi
             direction = EstadosEnum.down
         case .impulse:
@@ -68,13 +68,13 @@ class RoombaNode:SKSpriteNode{
     private func impulse(){
         switch direction {
         case .left:
-            self.physicsBody?.applyForce(CGVector(dx: -size.width*500, dy: 0))
+            self.physicsBody?.applyForce(CGVector(dx: -size.width*250, dy: 0))
         case .right:
-            self.physicsBody?.applyForce(CGVector(dx: size.width*500, dy: 0))
+            self.physicsBody?.applyForce(CGVector(dx: size.width*250, dy: 0))
         case .up:
-            self.physicsBody?.applyForce(CGVector(dx: 0, dy: size.width*500))
+            self.physicsBody?.applyForce(CGVector(dx: 0, dy: size.width*250))
         case .down:
-            self.physicsBody?.applyForce(CGVector(dx: 0, dy: -size.width*500))
+            self.physicsBody?.applyForce(CGVector(dx: 0, dy: -size.width*250))
         case .impulse:
             fatalError("direcao não possui estado impulse")
         }
